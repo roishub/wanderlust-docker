@@ -22,14 +22,14 @@ WanderLust is a simple MERN travel blog website ✈ This is an open source proje
    Volumes: Binds the local directory ./backend/data to /data inside the container i.e., transfers data from './backend/data' to the './data' folder inside mongodb.
    Ports: Forwards port 27017 from the host to port 27017 in the container.
 
-   Backend Service (backend):
+   - Backend Service (backend):
    Container Name: backend
    Build: Builds the Docker image for the backend service using the Dockerfile located in ./backend.
    Env File: Uses environment variables defined in ./backend/.env.sample.
    Ports: Forwards port 5000 from the host to port 5000 in the container.
    Depends On: Specifies that this service depends on the mongodb service, ensuring that the mongodb service is started before the backend service.
 
-   Frontend Service (frontend):
+   - Frontend Service (frontend):
    Container Name: frontend
    Build: Builds the Docker image for the frontend service using the Dockerfile located in ./frontend.
    Env File: Uses environment variables defined in ./frontend/.env.sample.
