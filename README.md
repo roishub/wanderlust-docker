@@ -1,6 +1,6 @@
-# Wanderlust - Your Ultimate Travel Blog 🌍✈️
+# Wanderlust - Docker Project
 
-WanderLust is a simple MERN travel blog website ✈ This is an open source project that i have taken from the following link- https://github.com/krishnaacharyaa/wanderlust from #krishnaacharyaa, so that I can try and dockerize this application. I have followed the method given by #LondheShubham153 (Shubham Londhe)
+WanderLust is a simple MERN travel blog website ✈ This is an open source project that i have taken from the following link- https://github.com/krishnaacharyaa/wanderlust from #krishnaacharyaa, so that I can try and dockerize this application. I have followed the method given by #LondheShubham153 (Shubham Londhe) in his youtube video which u can access using https://www.youtube.com/watch?v=oUMM1x91McA.
 
 ## Steps that I have taken to Dockerize this Application
 
@@ -71,20 +71,4 @@ WanderLust is a simple MERN travel blog website ✈ This is an open source proje
    docker exec -it <mongoDB-container-ID> mongoimport --db wanderlust --collection posts --file ./data/sample_posts.json --jsonArray
    ```
 
-   This will enable the web app to perform as it should.
-6. **Configure Environment Variables**
-
-   ```bash
-   cp .env.sample .env
-   ```
-
-
-   ```
-
-## 🌟 
-
-## 💖 Show Your Support
-
-If you find this project interesting and inspiring, please consider showing your support by starring it on GitHub! Your star goes a long way in helping me reach more developers and encourages me to keep enhancing the project.
-
-🚀 Feel free to get in touch with me for any further queries or support, happy to help :)
+   Then you should be able to access the completed application by visiting your localhost.
