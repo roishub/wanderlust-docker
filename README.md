@@ -69,4 +69,4 @@ WanderLust is a simple MERN travel blog website ✈ This is an open source proje
    docker exec -it <mongoDB-container-ID> mongoimport --db wanderlust --collection posts --file ./data/sample_posts.json --jsonArray
    ```
 
-   Then you should be able to access the completed application by visiting your localhost.
+   Refresh your page and then you should be able to access the completed application.
