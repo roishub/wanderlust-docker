@@ -1,18 +1,16 @@
 # Wanderlust - Your Ultimate Travel Blog 🌍✈️
 
-WanderLust is a simple MERN travel blog website ✈ This is an open source project that i have taken from the following link- https://github.com/krishnaacharyaa/wanderlust , to take up a project to dockerize this application.
+WanderLust is a simple MERN travel blog website ✈ This is an open source project that i have taken from the following link- https://github.com/krishnaacharyaa/wanderlust from #krishnaacharyaa, so that I can try and dockerize this application. I have followed the method given by #LondheShubham153 (Shubham Londhe)
 
-
-To start with the 
-## Steps that i have taken to Dockerize this Application
+## Steps that I have taken to Dockerize this Application
 
 ### Setting up the Backend
 
-1. **create backend Docker file**
+1. **Create backend Docker file**
 
    - This Dockerfile sets up a Node.js environment(using the slim variant) in a Docker container, then copies application files, installs dependencies, sets environment variables, exposes port 5000, and starts the application with 'npm start'.
 
-2. **create frontend Docker file**
+2. **Create frontend Docker file**
 
    - Same base image as of that the backend is used here. It copies application files into the /app directory, installs dependencies with npm i, copies the .env.sample file as .env.local, exposes port 5173, and starts the application in development mode with npm run dev -- --host
    
