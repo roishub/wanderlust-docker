@@ -4,8 +4,6 @@ WanderLust is a simple MERN travel blog website ✈ This is an open source proje
 
 ## Steps that I have taken to Dockerize this Application
 
-### Setting up the Backend
-
 1. **Create backend Docker file**
 
    - This Dockerfile sets up a Node.js environment(using the slim variant) in a Docker container, then copies application files, installs dependencies, sets environment variables, exposes port 5000, and starts the application with 'npm start'.
