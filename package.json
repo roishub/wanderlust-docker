@@ -1,6 +1,7 @@
 {
   "dependencies": {
-    "concurrently": "^8.2.2"
+    "concurrently": "^8.2.2",
+    "jsdom": "^23.2.0"
   },
   "scripts": {
     "start-frontend": "cd frontend && npm run dev",

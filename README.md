@@ -23,17 +23,32 @@ WanderLust is a simple MERN travel blog website ✈ This is an open source proje
    Ports: Forwards port 27017 from the host to port 27017 in the container.
 
    - Backend Service (backend):
-   Container Name: backend
-   Build: Builds the Docker image for the backend service using the Dockerfile located in ./backend.
-   Env File: Uses environment variables defined in ./backend/.env.sample.
-   Ports: Forwards port 5000 from the host to port 5000 in the container.
-   Depends On: Specifies that this service depends on the mongodb service, ensuring that the mongodb service is started before the backend service.
+   Stage 1 (backend-builder):
+   It uses the Node.js 21 image as the base image and sets up a working directory at /app.
+   Copies the entire application code into the working directory.
+   Runs npm install to install the dependencies specified in your package.json file.
+   Stage 2:
+   It uses the Node.js 21-slim image as the base image and sets up a working directory at /app.
+   Copies the application code from the backend-builder stage into the working directory.
+   Copies the .env.sample file to .env in the working directory.
+   Exposes port 5000, which is typically used for running Node.js applications.
+   Sets the default command to npm start, which is commonly used to start Node.js applications.
 
    - Frontend Service (frontend):
-   Container Name: frontend
-   Build: Builds the Docker image for the frontend service using the Dockerfile located in ./frontend.
-   Env File: Uses environment variables defined in ./frontend/.env.sample.
-   Ports: Forwards port 5173 from the host to port 5173 in the container.
+   Stage 1:
+   It uses the Node.js 21 image as the base image.
+   Sets up a working directory at /app.
+   Copies the entire context (all files and directories) into the working directory.
+   Runs npm install --quiet to install dependencies specified in the package.json file.
+   This stage likely builds the frontend assets or dependencies required for the application.
+   Stage 2:
+   It uses the Node.js 21-slim image as the base image.
+   Sets up a working directory at /app.
+   Copies the built artifacts (such as frontend assets) from the first stage into the working directory.
+   Copies the .env.sample file to .env.local in the working directory.
+   Exposes port 5173, which is the port on which the frontend application will be accessible.
+   Sets the default command to npm run dev -- --host, indicating that the application should be started in development mode with a specific host configuration.
+
 
 
 4. **Providing right values inside env files**
