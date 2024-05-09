@@ -50,6 +50,7 @@ WanderLust is a simple MERN travel blog website ✈ This is an open source proje
    Sets the default command to npm run dev -- --host, indicating that the application should be started in development mode with a specific host configuration.
 
 
+
 4. **Providing right values inside env files**
 
    - Open './backend/.env.sample'. Since we are using a mongo in a container. Change the localhost in mongoURI to mongo.
