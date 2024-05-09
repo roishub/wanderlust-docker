@@ -1,18 +1,14 @@
-# Wanderlust - Your Ultimate Travel Blog 🌍✈️
+# Wanderlust - Docker Project
 
-WanderLust is a simple MERN travel blog website ✈ This is an open source project that i have taken from the following link- https://github.com/krishnaacharyaa/wanderlust , to take up a project to dockerize this application.
+WanderLust is a simple MERN travel blog website ✈ This is an open source project that i have taken from the following link- https://github.com/krishnaacharyaa/wanderlust from #krishnaacharyaa, so that I can try and dockerize this application. I have followed the method given by #LondheShubham153 (Shubham Londhe) in his youtube video which u can access using https://www.youtube.com/watch?v=oUMM1x91McA.
 
+## Steps that I have taken to Dockerize this Application
 
-To start with the 
-## Steps that i have taken to Dockerize this Application
-
-### Setting up the Backend
-
-1. **create backend Docker file**
+1. **Create backend Docker file**
 
    - This Dockerfile sets up a Node.js environment(using the slim variant) in a Docker container, then copies application files, installs dependencies, sets environment variables, exposes port 5000, and starts the application with 'npm start'.
 
-2. **create frontend Docker file**
+2. **Create frontend Docker file**
 
    - Same base image as of that the backend is used here. It copies application files into the /app directory, installs dependencies with npm i, copies the .env.sample file as .env.local, exposes port 5173, and starts the application in development mode with npm run dev -- --host
    
@@ -26,18 +22,32 @@ To start with the
    Volumes: Binds the local directory ./backend/data to /data inside the container i.e., transfers data from './backend/data' to the './data' folder inside mongodb.
    Ports: Forwards port 27017 from the host to port 27017 in the container.
 
-   Backend Service (backend):
-   Container Name: backend
-   Build: Builds the Docker image for the backend service using the Dockerfile located in ./backend.
-   Env File: Uses environment variables defined in ./backend/.env.sample.
-   Ports: Forwards port 5000 from the host to port 5000 in the container.
-   Depends On: Specifies that this service depends on the mongodb service, ensuring that the mongodb service is started before the backend service.
+   - Backend Service (backend):
+   Stage 1 (backend-builder):
+   It uses the Node.js 21 image as the base image and sets up a working directory at /app.
+   Copies the entire application code into the working directory.
+   Runs npm install to install the dependencies specified in your package.json file.
+   Stage 2:
+   It uses the Node.js 21-slim image as the base image and sets up a working directory at /app.
+   Copies the application code from the backend-builder stage into the working directory.
+   Copies the .env.sample file to .env in the working directory.
+   Exposes port 5000, which is typically used for running Node.js applications.
+   Sets the default command to npm start, which is commonly used to start Node.js applications.
 
-   Frontend Service (frontend):
-   Container Name: frontend
-   Build: Builds the Docker image for the frontend service using the Dockerfile located in ./frontend.
-   Env File: Uses environment variables defined in ./frontend/.env.sample.
-   Ports: Forwards port 5173 from the host to port 5173 in the container.
+   - Frontend Service (frontend):
+   Stage 1:
+   It uses the Node.js 21 image as the base image.
+   Sets up a working directory at /app.
+   Copies the entire context (all files and directories) into the working directory.
+   Runs npm install --quiet to install dependencies specified in the package.json file.
+   This stage likely builds the frontend assets or dependencies required for the application.
+   Stage 2:
+   It uses the Node.js 21-slim image as the base image.
+   Sets up a working directory at /app.
+   Copies the built artifacts (such as frontend assets) from the first stage into the working directory.
+   Copies the .env.sample file to .env.local in the working directory.
+   Exposes port 5173, which is the port on which the frontend application will be accessible.
+   Sets the default command to npm run dev -- --host, indicating that the application should be started in development mode with a specific host configuration.
 
 
 4. **Providing right values inside env files**
@@ -73,20 +83,4 @@ To start with the
    docker exec -it <mongoDB-container-ID> mongoimport --db wanderlust --collection posts --file ./data/sample_posts.json --jsonArray
    ```
 
-   This will enable the web app to perform as it should.
-6. **Configure Environment Variables**
-
-   ```bash
-   cp .env.sample .env
-   ```
-
-
-   ```
-
-## 🌟 
-
-## 💖 Show Your Support
-
-If you find this project interesting and inspiring, please consider showing your support by starring it on GitHub! Your star goes a long way in helping me reach more developers and encourages me to keep enhancing the project.
-
-🚀 Feel free to get in touch with me for any further queries or support, happy to help :)
+   Refresh your page and then you should be able to access the completed application.
